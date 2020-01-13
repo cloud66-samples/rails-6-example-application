@@ -1,15 +1,31 @@
 after_checkout:
  - inline: |
      #!/usr/bin/env bash
-     # mkdir -p <%= ENV['STACK_BASE'] %>/shared/packs
-     # chgrp app_writers <%= ENV['STACK_BASE'] %>/shared/packs
-     # chmod g=+rwXs <%= ENV['STACK_BASE'] %>/shared/packs
-     # rm -rf <%= ENV['STACK_PATH'] %>/public/packs
-     # ln -nfs <%= ENV['STACK_BASE'] %>/shared/packs <%= ENV['STACK_PATH'] %>/public/packs
-     # sudo chown -h root:root <%= ENV['STACK_PATH'] %>/public/packs
-     # sudo chattr +i <%= ENV['STACK_PATH'] %>/public/packs
-     sudo mkdir -p <%= ENV['STACK_PATH'] %>/public/packs
-     sudo chattr +i <%= ENV['STACK_PATH'] %>/public/packs
+     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/before_after_checkout
+     mkdir -p <%= ENV['STACK_BASE'] %>/shared/packs
+     chgrp app_writers <%= ENV['STACK_BASE'] %>/shared/packs
+     chmod g=+rwXs <%= ENV['STACK_BASE'] %>/shared/packs
+     rm -rf <%= ENV['STACK_PATH'] %>/public/packs
+     ln -nfs <%= ENV['STACK_BASE'] %>/shared/packs <%= ENV['STACK_PATH'] %>/public/packs
+     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/after_after_checkout
+   target: rails
+   run_on: all_servers
+   run_as: cloud66-user
+   execute: true
+   apply_during: all
+after_bundle:
+ - inline: |
+     #!/usr/bin/env bash
+     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/after_bundle
+   target: rails
+   run_on: all_servers
+   run_as: cloud66-user
+   execute: true
+   apply_during: all
+after_symlink:
+ - inline: |
+     #!/usr/bin/env bash
+     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/after_symlink
    target: rails
    run_on: all_servers
    run_as: cloud66-user
