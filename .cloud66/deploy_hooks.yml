@@ -1,4 +1,4 @@
-after_symlink:
+after_bundle:
  - inline: |
      #!/usr/bin/env bash
      mkdir -p <%= ENV['STACK_BASE'] %>/shared/packs
