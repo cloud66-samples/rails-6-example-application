@@ -5,7 +5,7 @@ after_checkout:
      chgrp app_writers <%= ENV['STACK_BASE'] %>/shared/packs
      chmod g=+rwXs <%= ENV['STACK_BASE'] %>/shared/packs
      rm -rf <%= ENV['STACK_PATH'] %>/public/packs
-     ln -nfs <%= ENV['STACK_PATH'] %>/public/packs <%= ENV['STACK_BASE'] %>/shared/packs
+     ln -nfs <%= ENV['STACK_BASE'] %>/shared/packs <%= ENV['STACK_PATH'] %>/public/packs
    target: rails
    run_on: all_servers
    run_as: cloud66-user
