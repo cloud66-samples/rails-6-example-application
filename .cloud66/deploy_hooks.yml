@@ -1,0 +1,13 @@
+after_checkout:
+ - inline: |
+     #!/usr/bin/env bash
+     mkdir -p <%= ENV['STACK_BASE'] %>/shared/packs
+     chgrp app_writers <%= ENV['STACK_BASE'] %>/shared/packs
+     chmod g=+rwXs <%= ENV['STACK_BASE'] %>/shared/packs
+     rm -rf <%= ENV['STACK_PATH'] %>/public/packs
+     ln -nfs <%= ENV['STACK_PATH'] %>/public/packs <%= ENV['STACK_BASE'] %>/shared/packs
+   target: rails
+   run_on: all_servers
+   run_as: cloud66-user
+   execute: true
+   apply_during: all
