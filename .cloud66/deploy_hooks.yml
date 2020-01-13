@@ -1,4 +1,4 @@
-after_bundle:
+after_checkout:
  - inline: |
      #!/usr/bin/env bash
      # mkdir -p <%= ENV['STACK_BASE'] %>/shared/packs
