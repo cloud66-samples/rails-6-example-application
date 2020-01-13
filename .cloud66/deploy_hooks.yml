@@ -7,6 +7,7 @@ after_bundle:
      rm -rf <%= ENV['STACK_PATH'] %>/public/packs
      ln -nfs <%= ENV['STACK_BASE'] %>/shared/packs <%= ENV['STACK_PATH'] %>/public/packs
      sudo chown -h root:root <%= ENV['STACK_PATH'] %>/public/packs
+     sudo chattr +i <%= ENV['STACK_PATH'] %>/public/packs
    target: rails
    run_on: all_servers
    run_as: cloud66-user
