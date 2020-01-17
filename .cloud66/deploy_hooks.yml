@@ -1,21 +1,21 @@
 after_checkout:
  - inline: |
      #!/usr/bin/env bash
-     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/before_after_checkout
+     ls -al $STACK_PATH/public > /tmp/before_after_checkout
 
-     mkdir -p <%= ENV['STACK_BASE'] %>/shared/packs
-     chgrp app_writers <%= ENV['STACK_BASE'] %>/shared/packs
-     chmod g=+rwXs <%= ENV['STACK_BASE'] %>/shared/packs
-     rm -rf <%= ENV['STACK_PATH'] %>/public/packs
-     ln -nfs <%= ENV['STACK_BASE'] %>/shared/packs <%= ENV['STACK_PATH'] %>/public/packs
+     mkdir -p $STACK_BASE/shared/packs
+     chgrp app_writers $STACK_BASE/shared/packs
+     chmod g=+rwXs $STACK_BASE/shared/packs
+     rm -rf $STACK_PATH/public/packs
+     ln -nfs $STACK_BASE/shared/packs $STACK_PATH/public/packs
 
-     mkdir -p <%= ENV['STACK_BASE'] %>/shared/node_modules
-     chgrp app_writers <%= ENV['STACK_BASE'] %>/shared/node_modules
-     chmod g=+rwXs <%= ENV['STACK_BASE'] %>/shared/node_modules
-     rm -rf <%= ENV['STACK_PATH'] %>/node_modules
-     ln -nfs <%= ENV['STACK_BASE'] %>/shared/node_modules <%= ENV['STACK_PATH'] %>/node_modules
+     mkdir -p $STACK_BASE/shared/node_modules
+     chgrp app_writers $STACK_BASE/shared/node_modules
+     chmod g=+rwXs $STACK_BASE/shared/node_modules
+     rm -rf $STACK_PATH/node_modules
+     ln -nfs $STACK_BASE/shared/node_modules $STACK_PATH/node_modules
 
-     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/after_after_checkout
+     ls -al $STACK_PATH/public > /tmp/after_after_checkout
    target: rails
    run_on: all_servers
    run_as: cloud66-user
@@ -24,7 +24,7 @@ after_checkout:
 after_bundle:
  - inline: |
      #!/usr/bin/env bash
-     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/after_bundle
+     ls -al $STACK_PATH/public > /tmp/after_bundle
    target: rails
    run_on: all_servers
    run_as: cloud66-user
@@ -33,7 +33,7 @@ after_bundle:
 after_symlink:
  - inline: |
      #!/usr/bin/env bash
-     ls -al <%= ENV['STACK_PATH'] %>/public > /tmp/after_symlink
+     ls -al $STACK_PATH/public > /tmp/after_symlink
    target: rails
    run_on: all_servers
    run_as: cloud66-user
