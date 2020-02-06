@@ -1,0 +1,20 @@
+production:
+  rails:
+    server:
+      unique_name: rails
+      vendor: aws
+      key_name: Marmoset
+      region: us-west-2
+      availability_zone: us-west-2a
+      size: t3.large
+  redis:
+    server:
+      same_as: database
+  postgresql:
+    server:
+      unique_name: database
+      vendor: aws
+      key_name: Marmoset
+      region: us-west-2
+      availability_zone: us-west-2a
+      size: t3.medium
