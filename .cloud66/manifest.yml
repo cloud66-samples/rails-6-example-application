@@ -1,0 +1,3 @@
+rails:
+  configuration:
+    symlink_node_modules: true
