@@ -1,0 +1,3 @@
+rails:
+  configurations:
+    cloud_image: vic-test-snapshot
