@@ -1,1 +1,1 @@
-worker: echo 'start sleeping'; sleep 99999999
+sleep 99999999
